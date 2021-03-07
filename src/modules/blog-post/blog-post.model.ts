@@ -1,24 +1,33 @@
-import { AllowNull, BelongsTo, Column, Default, ForeignKey, Model, Table, Unique } from 'sequelize-typescript';
+import {
+  AllowNull,
+  BelongsTo,
+  Column,
+  DataType,
+  Default,
+  ForeignKey,
+  Model,
+  Table,
+  Unique,
+} from 'sequelize-typescript';
 import { User } from '../user/user.model';
 
 @Table
 export class BlogPost extends Model {
-
   @Unique
   @AllowNull(false)
-  @Column
+  @Column(DataType.STRING)
   title!: string;
 
   @AllowNull(false)
-  @Column
+  @Column(DataType.STRING)
   description!: string;
 
   @Default(false)
-  @Column
+  @Column(DataType.TINYINT)
   published!: boolean;
 
   @ForeignKey(() => User)
-  @Column
+  @Column(DataType.INTEGER)
   userId!: number;
 
   @BelongsTo(() => User)

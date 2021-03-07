@@ -66,10 +66,13 @@ intializedSequelize
     );
     console.log('Database populated');
   })
-  .then(() => {
+  .then(async () => {
     // set port, listen for requests
     const PORT = process.env.PORT || 8080;
     app.listen(PORT, () => {
       console.log(`Server is running on port http://localhost:${PORT}.`);
     });
+    const bp = await db.BlogPost.findByPk(1);
+    console.log(bp);
+    console.log(bp?.title);
   });
